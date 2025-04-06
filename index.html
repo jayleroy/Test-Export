@@ -1,0 +1,40 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>SVG Export Test</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.11.1/p5.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/p5.js-svg@1.0.1/dist/p5.svg.min.js"></script>
+</head>
+<body>
+  <script>
+    window.onload = () => {
+      let img;
+
+      window.preload = function () {
+        const base64 = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR4nGNgYAAAAAMAASsJTYQAAAAASUVORK5CYII=";
+        img = loadImage(base64);
+      };
+
+      window.setup = function () {
+        createCanvas(100, 100, SVG);
+        noLoop();
+      };
+
+      window.draw = function () {
+        background(255);
+        image(img, 0, 0, 100, 100);
+
+        stroke(0);
+        fill(255, 0, 0);
+        ellipse(50, 50, 50, 50);
+
+        setTimeout(() => {
+          save("svg-export-test.svg");
+        }, 500);
+      };
+    };
+  </script>
+</body>
+</html>
